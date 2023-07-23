@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controllers/balanceController.dart';
+import 'package:intl/intl.dart';
+import 'package:money_app/models/modelTransaction.dart';
+import 'package:money_app/topup.dart';
+import 'package:money_app/pay.dart';
+import 'controllers/balanceController.dart'; // Import the iznosController
 
 class Transactions extends StatelessWidget {
   const Transactions({Key? key}) : super(key: key);
@@ -9,106 +13,166 @@ class Transactions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MoneyApp'),
+        title: const Text('MoneyApp'),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Color(0xFFC0028B),
+        backgroundColor: const Color(0xFFC0028B),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                color: Color(0xFFC0028B),
-                child: Center(
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Container(
+              color: const Color(0xFFC0028B),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 80),
+                  child: Obx(
+                    () {
+                      final balance = Get.find<iznosController>().iznos.value;
+                      final dollars = (balance ~/ 1).toString();
+                      final decimals =
+                          (balance % 1).toStringAsFixed(2).substring(1);
+                      return RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                              text: '\$',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            TextSpan(
+                              text: dollars,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            TextSpan(
+                              text: decimals,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 80), // Adjust the top padding as needed
+                    padding: const EdgeInsets.fromLTRB(0, 90, 0, 0),
                     child: Obx(
                       () {
-                        final balance = Get.find<iznosController>().iznos.value;
-                        final dollars = (balance ~/ 1).toString();
-                        final decimals = (balance % 1).toStringAsFixed(2).substring(1);
-                        return RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '\$', // Dollar sign with smaller size
-                                style: const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),
+                        final transactionList =
+                            Get.find<iznosController>().transakcije;
+                        return ListView.builder(
+                          itemCount: transactionList.length,
+                          itemBuilder: (context, index) {
+                            final transaction = transactionList[index];
+                            return ListTile(
+                              leading: Text(
+                                transaction.tip == tipTransakcije.DEPOSIT
+                                    ? 'DEPOSIT'
+                                    : 'UPLATA',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      transaction.tip == tipTransakcije.DEPOSIT
+                                          ? Colors.green
+                                          : Colors.red,
+                                ),
                               ),
-                              TextSpan(
-                                text: dollars, // Hundreds with larger size
-                                style: const TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.w500),
-                              ),
-                              TextSpan(
-                                text: decimals, // Decimals with same size as the dollar sign
-                                style: const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
+                              title: Text(transaction.naziv),
+                              subtitle: Text(formatDate(transaction.datum)),
+                              trailing: Text(
+                                  '\$${transaction.iznos.toStringAsFixed(2)}'),
+                            );
+                          },
                         );
                       },
                     ),
                   ),
                 ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Stack(
-                children: [
-                  Container(
-                    color: Colors.white, // Set the color for the remaining two-thirds of the screen
-                    child: Center(
-                      child: Text(
-                        'Remaining Two-Thirds',
-                        style: const TextStyle(color: Colors.black, fontSize: 24),
-                      ),
+                Align(
+                  alignment: const Alignment(0, -1.3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    height: 130,
+                    width: 380,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildIconButton("lib/assets/images/icon1.png", "Pay",
+                            () {
+                          Get.to(() => Pay());
+                        }),
+                        buildIconButton("lib/assets/images/icon2.png", "Top up",
+                            () {
+                          Get.to(() => TopUp());
+                        }),
+                        buildIconButton("lib/assets/images/icon3.png", "Loan",
+                            () {
+                          print('Radi');
+                        }),
+                      ],
                     ),
                   ),
-                  Positioned(
-                    bottom: 0, // Position the box at the bottom of the Stack
-                    left: 0, // Position the box to the left of the Stack
-                    right: 0, // Position the box to the right of the Stack
-                    child: Container(
-                      height: 80, // Adjust the height of the box as needed
-                      color: Colors.grey, // Set the color of the box
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton.icon(
-                            label: Text('Pay'),
-                            onPressed: () {
-                              // Handle the first icon button press
-                              // Add your logic here
-                            },
-                            icon: ImageIcon(AssetImage("assets/images/icon1.png")), // Replace 'icon1' with the first icon you want to display
-                          ),
-                          ElevatedButton.icon(
-                            label: Text('Top up'),
-                            onPressed: () {
-                              print('Radi');
-                            },
-                            icon: ImageIcon(AssetImage("assets/images/icon2.png")), // Replace 'icon2' with the second icon you want to display
-                          ),
-                          ElevatedButton.icon(
-                            label: Text('Loan'),
-                            onPressed: () {
-                              // Handle the third icon button press
-                              // Add your logic here
-                            },
-                            icon: ImageIcon(AssetImage("assets/images/icon3.png")), // Replace 'icon3' with the third icon you want to display
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget buildIconButton(
+      String iconPath, String label, VoidCallback onPressed) {
+    return InkWell(
+      onTap: onPressed,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(iconPath, height: 70, width: 70),
+          const SizedBox(height: 8),
+          Text(label),
+        ],
+      ),
+    );
+  }
+
+  String formatDate(DateTime datum) {
+    if (DateTime.now().difference(datum).inDays == 0) {
+      return 'DANAS';
+    } else if (DateTime.now().difference(datum).inDays == 1) {
+      return 'JUČER';
+    } else {
+      return DateFormat('d MMMM').format(datum);
+    }
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/widgets.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get.dart';
 import 'package:money_app/transactions.dart';
 import 'controllers/balanceController.dart';
 
-void main(){
+void main() {
   Get.put(iznosController());
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'MoneyApp',
+      debugShowCheckedModeBanner: false,
       home: Transactions(),
     );
   }
