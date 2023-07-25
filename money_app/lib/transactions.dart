@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:money_app/loan.dart';
 import 'package:money_app/models/modelTransaction.dart';
 import 'package:money_app/topup.dart';
 import 'package:money_app/pay.dart';
@@ -137,7 +138,7 @@ class Transactions extends StatelessWidget {
                         }),
                         buildIconButton("lib/assets/images/icon3.png", "Loan",
                             () {
-                          print('Radi');
+                          Get.to(() => Loan());
                         }),
                       ],
                     ),

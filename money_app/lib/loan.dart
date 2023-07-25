@@ -1,0 +1,263 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Loan extends StatelessWidget {
+  const Loan({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    bool value = false;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Loan Application'),
+        centerTitle: true,
+        backgroundColor: const Color(0xFFC0028B),
+        elevation: 0.0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: EdgeInsets.all(15),
+            child: Text('Terms and Conditions',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500)),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
+              child: Text(
+                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
+                textAlign: TextAlign.justify,
+              )),
+          Container(
+            color: Colors.grey[200],
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Accept Terms & Conditions',
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                  ),
+                  Switch(
+                      activeColor: Colors.green,
+                      activeTrackColor: Colors.grey[300],
+                      inactiveThumbColor: Colors.white,
+                      inactiveTrackColor: Colors.grey[300],
+                      value: value,
+                      onChanged: (value) {
+                        value = true;
+                      }),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+            child: Text(
+              'ABOUT YOU',
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+                  child: Text(
+                    'Monthly Salary',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey[500]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+                  child: Text(
+                    'Monthly Salary',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey[500]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+            child: Text(
+              'LOAN',
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+                  child: Text(
+                    'Amount',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey[500]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
+                  child: Text(
+                    'Term',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey[500]),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.grey[200],
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+}
