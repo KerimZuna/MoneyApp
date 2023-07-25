@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/transactions.dart';
-import 'controllers/balanceController.dart';
+import 'package:money_app/towho.dart';
 
 class Pay extends StatelessWidget {
   final RxString inputAmount = ''.obs;
@@ -59,10 +58,8 @@ class Pay extends StatelessWidget {
                 width: 220,
                 child: ElevatedButton(
                   onPressed: () {
-                    final double amount =
-                        double.tryParse(inputAmount.value) ?? 0.0;
-                    Get.find<iznosController>().dodajIznos(amount);
-                    Get.to(() => Transactions());
+                    final double amount = double.tryParse(inputAmount.value) ?? 0.0;
+                    Get.to(() => ToWho(), arguments: amount.toString());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFF9E6F3).withOpacity(0.9),

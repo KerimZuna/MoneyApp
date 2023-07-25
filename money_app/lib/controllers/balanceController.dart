@@ -22,6 +22,12 @@ class iznosController extends GetxController {
     ));
   }
 
+  void uplatiIznos(double iznosZaUplatiti) {
+    iznos.value -= iznosZaUplatiti;
+    _dodajTransakciju(Transakcije(
+        tip: tipTransakcije.UPLATA, iznos: iznos.value, datum: DateTime.now()));
+  }
+
   void updateiznos(double noviIznos) {
     iznos.value = noviIznos;
   }
