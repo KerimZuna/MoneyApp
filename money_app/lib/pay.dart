@@ -8,20 +8,20 @@ class Pay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFC0028B),
+      backgroundColor: const Color(0xFFC0028B),
       appBar: AppBar(
-        title: Text('MoneyApp'),
+        title: const Text('MoneyApp'),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Color(0xFFC0028B),
+        backgroundColor: const Color(0xFFC0028B),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 50),
-            Center(
+            const SizedBox(height: 50),
+            const Center(
               child: Text(
                 'How much?',
                 style: TextStyle(
@@ -30,17 +30,17 @@ class Pay extends StatelessWidget {
                     color: Colors.white),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Obx(() => Center(
                   child: Text(
                     inputAmount.value.isEmpty ? '0' : inputAmount.value,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 36,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
                 )),
-            SizedBox(height: 120),
+            const SizedBox(height: 120),
             NumberInput(onNumberSelected: (value) {
               if (value == '<') {
                 if (inputAmount.value.isNotEmpty) {
@@ -51,7 +51,7 @@ class Pay extends StatelessWidget {
                 inputAmount.value = inputAmount.value + value;
               }
             }),
-            SizedBox(height: 120),
+            const SizedBox(height: 120),
             Center(
               child: SizedBox(
                 height: 70,
@@ -62,9 +62,9 @@ class Pay extends StatelessWidget {
                     Get.to(() => ToWho(), arguments: amount.toString());
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFF9E6F3).withOpacity(0.9),
+                    backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Next',
                     style: TextStyle(
                         fontSize: 20,
@@ -91,13 +91,13 @@ class NumberInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFC0028B),
+        color: const Color(0xFFC0028B),
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GridView.builder(
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3, crossAxisSpacing: 80, mainAxisSpacing: 10),
         itemCount: 12,
         itemBuilder: (context, index) {
