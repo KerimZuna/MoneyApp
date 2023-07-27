@@ -1,8 +1,10 @@
+import 'balanceController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class LoanController extends GetxController {
+  final iznosController _iznosController = Get.find<iznosController>();
   RxBool acceptedTerms = false.obs;
   RxBool appliedBefore = false.obs;
   RxInt monthlySalary = RxInt(0);
@@ -16,23 +18,22 @@ class LoanController extends GetxController {
   }
 
   void checkApplicationStatus() {
-    // Simulating the application status check
-    // You can implement this based on your backend logic
-    // Here, we just set appliedBefore to true after the first application
-    appliedBefore.value = true;
+    appliedBefore.value = false;
   }
 
   Future<int> generateRandomNumber() async {
-    final response = await http.get(Uri.parse('https://www.randomnumberapi.com/api/v1/int'));
-    if (response.statusCode == 200) {
-      final data = int.tryParse(response.body);
-      if (data != null) {
-        return data;
-      }
+  final response = await http.get(Uri.parse('http://www.randomnumberapi.com/api/v1.0/random'));
+  if (response.statusCode == 200) {
+    final data = response.body.replaceAll('[', '').replaceAll(']', '');
+    final randomNumber = int.tryParse(data);
+    if (randomNumber != null) {
+      print(randomNumber);
+      return randomNumber;
     }
-    // Return a default value if the API call fails
-    return 0;
   }
+  return 0;
+}
+
 
   void applyForLoan() async {
     if (appliedBefore.value) {
@@ -50,36 +51,36 @@ class LoanController extends GetxController {
       return;
     }
 
-    // Calculate loan decision based on the rules
     final randomNumber = await generateRandomNumber();
-    final accountMoney = 1500; // Replace with actual account money value
+    final accountMoney = _iznosController.iznos.value;
+
+    print('Random Number: $randomNumber');
+    print('Account Money: $accountMoney');
+    print('Monthly Salary: $monthlySalary');
+    print('Loan Amount: $loanAmount');
+    print('Loan Term: $loanTerm');
 
     if (randomNumber <= 50 ||
         accountMoney <= 1000 ||
         monthlySalary.value <= 1000 ||
         loanAmount.value / loanTerm.value * 12 >= monthlySalary.value / 3) {
-      // Declined case
       Get.dialog(
-        AlertDialog(
+        const AlertDialog(
           title: Text('DECLINED'),
           content: Text('Ooopsss. Your application has been declined. It’s not your fault, it’s a financial crisis.'),
         ),
       );
     } else {
-      // Approved case
       Get.dialog(
-        AlertDialog(
+        const AlertDialog(
           title: Text('APPROVED'),
           content: Text('Yeeeyyy !! Congrats. Your application has been approved. Don’t tell your friends you have money!'),
         ),
       );
 
-      // Add a new transaction to the user's account
-      // Replace this with your actual transaction logic
-      // addTransaction('Loan', loanAmount.value);
+      _iznosController.loanIznos(loanAmount.value.toDouble());
     }
 
-    // Mark as applied before
     appliedBefore.value = true;
   }
 }

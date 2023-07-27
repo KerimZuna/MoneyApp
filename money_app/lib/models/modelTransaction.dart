@@ -4,6 +4,8 @@ enum tipTransakcije{
   UPLATA,
   // ignore: constant_identifier_names
   DEPOSIT,
+  // ignore: constant_identifier_names
+  LOAN,
 }
 
 class Transakcije{

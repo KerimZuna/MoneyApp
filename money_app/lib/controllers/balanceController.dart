@@ -17,19 +17,24 @@ class iznosController extends GetxController {
     iznos.value += iznosZaDodati;
     _dodajTransakciju(Transakcije(
       tip: tipTransakcije.DEPOSIT,
-      iznos: iznos.value,
+      iznos: iznosZaDodati,
       datum: DateTime.now(),
     ));
   }
 
-  void uplatiIznos(double iznosZaUplatiti) {
+  void uplatiIznos(double iznosZaUplatiti, String recipientName) {
     iznos.value -= iznosZaUplatiti;
     _dodajTransakciju(Transakcije(
-        tip: tipTransakcije.UPLATA, iznos: iznos.value, datum: DateTime.now()));
+        tip: tipTransakcije.UPLATA, iznos: iznosZaUplatiti, naziv: recipientName,  datum: DateTime.now()));
   }
 
-  void updateiznos(double noviIznos) {
-    iznos.value = noviIznos;
+  void loanIznos(double iznosZaPosuditi) {
+    iznos.value += iznosZaPosuditi;
+    _dodajTransakciju(Transakcije(
+      tip: tipTransakcije.LOAN,
+      iznos: iznosZaPosuditi,
+      datum: DateTime.now(),
+    ));
   }
 
   void _dodajTransakciju(Transakcije transakcija) {
@@ -42,13 +47,13 @@ class iznosController extends GetxController {
         tip: tipTransakcije.UPLATA,
         iznos: 45.99,
         datum: DateTime.now().subtract(const Duration(days: 2)),
-        naziv: 'Coffee Shop',
+        naziv: 'Konzum',
       ),
       Transakcije(
         tip: tipTransakcije.UPLATA,
         iznos: 25.00,
         datum: DateTime.now().subtract(const Duration(days: 1)),
-        naziv: 'Supermarket',
+        naziv: 'Udemy',
       ),
       Transakcije(
         tip: tipTransakcije.DEPOSIT,

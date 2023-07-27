@@ -9,6 +9,7 @@ class Loan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF7F7F7),
       appBar: AppBar(
         title: Text('Loan Application'),
         centerTitle: true,
@@ -35,7 +36,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
                 child: Row(
@@ -69,7 +70,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -86,7 +87,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -119,7 +120,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -136,7 +137,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -152,7 +153,7 @@ class Loan extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
                         onChanged: (value) {
-                          // Implement the logic to handle monthly expenses
+                          
                         },
                         decoration: const InputDecoration(
                           isDense: true,
@@ -176,7 +177,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -193,7 +194,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -226,7 +227,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Padding(
@@ -243,7 +244,7 @@ class Loan extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.grey[200],
+              color: Colors.white,
               child: Row(
                 children: [
                   Expanded(
@@ -273,11 +274,21 @@ class Loan extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: _loanController.applyForLoan,
-                child: Text('Apply for loan'),
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Center(
+                child: Container(
+                  height: 70,
+                  width: 200,
+                  margin: EdgeInsets.all(20),
+                  child: ElevatedButton(
+                    onPressed: _loanController.applyForLoan,
+                    child: Text('Apply for loan',style: TextStyle(fontSize: 20),),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFC0028B),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

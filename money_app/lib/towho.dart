@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:money_app/controllers/balanceController.dart';
-import 'package:money_app/transactions.dart'; // Import the BalanceController
+import 'package:money_app/transactions.dart';
 
 class ToWho extends StatelessWidget {
   final RxString recipientName = ''.obs;
@@ -13,9 +13,9 @@ class ToWho extends StatelessWidget {
         title: const Text('MoneyApp'),
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
-        centerTitle: true, // Match the background color
+        centerTitle: true, 
       ),
-      backgroundColor: const Color(0xFFC0028B), // Match the background color
+      backgroundColor: const Color(0xFFC0028B),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,7 +28,7 @@ class ToWho extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white, // Match the text color
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -38,30 +38,30 @@ class ToWho extends StatelessWidget {
               decoration: const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.white, // Set the color of the line
-                    width: 2.0, // Set the width of the line
+                    color: Colors.white,
+                    width: 2.0,
                   ),
                 ),
               ),
               child: TextField(
                 onChanged: (value) => recipientName.value = value,
-                style: const TextStyle(color: Colors.white), // Match the text color
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: const Color(
-                      0xFFC0028B), // Set the background color of the input field
+                      0xFFC0028B),
                   enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                         color:
-                            Colors.white), // Set the color of the bottom border
+                            Colors.white),
                   ),
                   focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                         color: Colors
-                            .white), // Set the color of the bottom border when focused
+                            .white),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(0), // No radius
+                    borderRadius: BorderRadius.circular(0),
                   ),
                 ),
               ),
@@ -74,8 +74,8 @@ class ToWho extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     final double amount = double.tryParse(Get.arguments) ?? 0.0;
-                    Get.find<iznosController>().uplatiIznos(amount);
-                    Get.to(() => const Transactions());
+                    Get.find<iznosController>().uplatiIznos(amount, recipientName.value);
+                    Get.off(() => Transactions());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),
