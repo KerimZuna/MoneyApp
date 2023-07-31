@@ -94,7 +94,7 @@ class DetailsTransaction extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 3),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
               child: Text(
