@@ -45,29 +45,30 @@ class iznosController extends GetxController {
     return [
       Transakcije(
         tip: tipTransakcije.UPLATA,
-        iznos: 45.99,
-        datum: DateTime.now().subtract(const Duration(days: 2)),
+        iznos: 18.99,
+        datum: DateTime.now().subtract(const Duration(days: 1)),
         naziv: 'Konzum',
       ),
       Transakcije(
         tip: tipTransakcije.UPLATA,
-        iznos: 25.00,
+        iznos: 175.00,
         datum: DateTime.now().subtract(const Duration(days: 1)),
-        naziv: 'Udemy',
+        naziv: 'Sport Vision',
       ),
       Transakcije(
-        tip: tipTransakcije.DEPOSIT,
-        iznos: 100.00,
-        datum: DateTime.now().subtract(const Duration(hours: 2)),
+        tip: tipTransakcije.UPLATA,
+        iznos: 21.75,
+        datum: DateTime.now().subtract(const Duration(days: 1)),
+        naziv: 'Udemy',
       ),
     ];
   }
 
   String formatDate(DateTime datum) {
     if (DateTime.now().difference(datum).inDays == 0) {
-      return 'DANAS';
+      return 'TODAY';
     } else if (DateTime.now().difference(datum).inDays == 1) {
-      return 'JUČER';
+      return 'YESTERDAY';
     } else {
       return DateFormat('d MMMM').format(datum);
     }

@@ -47,18 +47,20 @@ class LoanController extends GetxController {
     }
 
     if (!acceptedTerms.value) {
-      Get.snackbar('Error', 'Please accept the Terms & Conditions first.');
+      Get.snackbar(
+        'Error',
+        'Please accept the Terms & Conditions first.',
+        backgroundColor: Colors.white,
+        colorText: Colors.black,
+        snackPosition: SnackPosition.TOP,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        snackStyle: SnackStyle.FLOATING,
+      );
       return;
     }
 
     final randomNumber = await generateRandomNumber();
     final accountMoney = _iznosController.iznos.value;
-
-    print('Random Number: $randomNumber');
-    print('Account Money: $accountMoney');
-    print('Monthly Salary: $monthlySalary');
-    print('Loan Amount: $loanAmount');
-    print('Loan Term: $loanTerm');
 
     if (randomNumber <= 50 ||
         accountMoney <= 1000 ||

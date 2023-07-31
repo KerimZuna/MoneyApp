@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:money_app/loan.dart';
 import 'package:money_app/models/modelTransaction.dart';
 import 'package:money_app/topup.dart';
 import 'package:money_app/pay.dart';
 import 'controllers/balanceController.dart';
+import 'detailsTransaction.dart';
 
 class Transactions extends StatelessWidget {
   const Transactions({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class Transactions extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(15, 5, 20, 0),
+                                      const EdgeInsets.fromLTRB(30, 5, 20, 0),
                                   child: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 10),
@@ -122,46 +122,83 @@ class Transactions extends StatelessWidget {
 
                                     if (transaction?.tip ==
                                         tipTransakcije.DEPOSIT) {
-                                      iconData = Icons.add_circle_outline;
+                                      iconData = Icons.add_circle_rounded;
                                       transactionText = 'Top Up';
-                                      amountText = '+ $amountText';
+                                      amountText = '+$amountText';
                                     } else if (transaction?.tip ==
                                         tipTransakcije.LOAN) {
-                                      iconData = Icons.attach_money;
+                                      iconData =
+                                          Icons.assured_workload_outlined;
                                       transactionText = 'Loan';
-                                      amountText = '+ $amountText';
+                                      amountText = '+$amountText';
                                     } else {
-                                      iconData = Icons.payment;
+                                      iconData = Icons.shopping_bag;
                                       transactionText = transaction!.naziv;
                                     }
 
-                                    return Container(
-                                      color: Colors.white,
+                                    return ElevatedButton(
+                                      onPressed: () {
+                                        Get.to(() => DetailsTransaction(
+                                            transaction: transaction));
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor: Colors.black,
+                                        backgroundColor: Colors.white,
+                                        elevation: 0,
+                                      ),
                                       child: ListTile(
-                                        leading: Icon(
-                                          iconData,
-                                          color: transaction!.tip ==
-                                                  tipTransakcije.DEPOSIT
-                                              ? Colors.green
-                                              : transaction.tip ==
-                                                      tipTransakcije.LOAN
-                                                  ? Colors.blue
-                                                  : Colors.red,
+                                        leading: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Color(0xFFC0028B),
+                                                width: 0.2),
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: Color(0xFFC0028B),
+                                          ),
+                                          padding: const EdgeInsets.all(2),
+                                          child: Icon(
+                                            iconData,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                         title: Text(
                                           transactionText,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: transaction.tip ==
-                                                    tipTransakcije.DEPOSIT
-                                                ? Colors.green
-                                                : transaction.tip ==
-                                                        tipTransakcije.LOAN
-                                                    ? Colors.blue
-                                                    : Colors.red,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black,
                                           ),
                                         ),
-                                        trailing: Text(amountText),
+                                        trailing: Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: amountText.substring(
+                                                    0, amountText.indexOf('.')),
+                                                style: TextStyle(
+                                                  color: transaction?.tip ==
+                                                          tipTransakcije.DEPOSIT
+                                                      ? Colors.pink
+                                                      : Colors.black,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: amountText.substring(
+                                                    amountText.indexOf('.')),
+                                                style: TextStyle(
+                                                  color: transaction?.tip ==
+                                                          tipTransakcije.DEPOSIT
+                                                      ? Colors.pink
+                                                      : Colors.black,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     );
                                   },
@@ -252,12 +289,6 @@ class Transactions extends StatelessWidget {
   }
 
   String formatDate(DateTime datum) {
-    if (DateTime.now().difference(datum).inDays == 0) {
-      return 'DANAS';
-    } else if (DateTime.now().difference(datum).inDays == 1) {
-      return 'JUČER';
-    } else {
-      return DateFormat('d MMMM').format(datum);
-    }
+    return iznosController().formatDate(datum);
   }
 }
