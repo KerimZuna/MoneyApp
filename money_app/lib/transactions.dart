@@ -73,7 +73,7 @@ class Transactions extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  color: Color(0xFFF7F7F7),
+                  color: const Color(0xFFF7F7F7),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 90, 0, 0),
                     child: Obx(
@@ -111,7 +111,7 @@ class Transactions extends StatelessWidget {
                                 ),
                                 ListView.builder(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemCount: transactions?.length,
                                   itemBuilder: (context, index) {
                                     final transaction = transactions?[index];
@@ -150,11 +150,11 @@ class Transactions extends StatelessWidget {
                                         leading: Container(
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                                color: Color(0xFFC0028B),
+                                                color: const Color(0xFFC0028B),
                                                 width: 0.2),
                                             borderRadius:
                                                 BorderRadius.circular(4),
-                                            color: Color(0xFFC0028B),
+                                            color: const Color(0xFFC0028B),
                                           ),
                                           padding: const EdgeInsets.all(2),
                                           child: Icon(

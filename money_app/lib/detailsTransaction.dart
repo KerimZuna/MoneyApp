@@ -7,7 +7,8 @@ import 'controllers/balanceController.dart';
 class DetailsTransaction extends StatelessWidget {
   final Transakcije? transaction;
 
-  const DetailsTransaction({required this.transaction, Key? key}) : super(key: key);
+  const DetailsTransaction({required this.transaction, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DetailsTransaction extends StatelessWidget {
           centerTitle: true,
           backgroundColor: const Color(0xFFC0028B),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Transaction details not available.'),
         ),
       );
@@ -46,9 +47,10 @@ class DetailsTransaction extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFC0028B), width: 0.2),
+                      border: Border.all(
+                          color: const Color(0xFFC0028B), width: 0.2),
                       borderRadius: BorderRadius.circular(4),
-                      color: Color(0xFFC0028B),
+                      color: const Color(0xFFC0028B),
                     ),
                     padding: const EdgeInsets.all(10),
                     child: Icon(
@@ -82,22 +84,21 @@ class DetailsTransaction extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            if (transaction!.naziv != null)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16,0,0,0),
-                child: Text(
-                  '${transaction!.naziv}',
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+              child: Text(
+                transaction!.naziv,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
             const SizedBox(height: 2),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
               child: Text(
-                '${formatDateTime(transaction!.datum)}',
+                formatDateTime(transaction!.datum),
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w300,
@@ -106,64 +107,60 @@ class DetailsTransaction extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black, 
+                foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
                 elevation: 0,
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0,15,0,15),
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(Icons.receipt),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text('Add receipt'),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 70),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
               child: Text(
                 'SHARE THE COST',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black, 
+                foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
                 elevation: 0,
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(Icons.splitscreen),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Text('Split this bill'),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16.0, 0, 0, 0),
               child: Text(
                 'SUBSCRIPTION',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -176,27 +173,26 @@ class DetailsTransaction extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
                       child: Text(
                         'Repeating Payment',
-                        style: const TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
                     Switch(
                       value: false,
-                      onChanged: (value) {
-                      },
+                      onChanged: (value) {},
                     ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Container(
               color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16,20,0,20),
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(16, 20, 0, 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -207,13 +203,13 @@ class DetailsTransaction extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
-                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 50),
-            Row(
+            const SizedBox(height: 50),
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -230,7 +226,7 @@ class DetailsTransaction extends StatelessWidget {
               children: [
                 Text(
                   '${transaction!.naziv} - Merchant ID #1234',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
                   ),

@@ -22,23 +22,23 @@ class LoanController extends GetxController {
   }
 
   Future<int> generateRandomNumber() async {
-  final response = await http.get(Uri.parse('http://www.randomnumberapi.com/api/v1.0/random'));
-  if (response.statusCode == 200) {
-    final data = response.body.replaceAll('[', '').replaceAll(']', '');
-    final randomNumber = int.tryParse(data);
-    if (randomNumber != null) {
-      print(randomNumber);
-      return randomNumber;
+    final response = await http
+        .get(Uri.parse('http://www.randomnumberapi.com/api/v1.0/random'));
+    if (response.statusCode == 200) {
+      final data = response.body.replaceAll('[', '').replaceAll(']', '');
+      final randomNumber = int.tryParse(data);
+      if (randomNumber != null) {
+        print(randomNumber);
+        return randomNumber;
+      }
     }
+    return 0;
   }
-  return 0;
-}
-
 
   void applyForLoan() async {
     if (appliedBefore.value) {
       Get.dialog(
-        AlertDialog(
+        const AlertDialog(
           title: Text('Ooopsss, you applied before.'),
           content: Text('Wait for notification from us.'),
         ),
@@ -69,14 +69,16 @@ class LoanController extends GetxController {
       Get.dialog(
         const AlertDialog(
           title: Text('DECLINED'),
-          content: Text('Ooopsss. Your application has been declined. It’s not your fault, it’s a financial crisis.'),
+          content: Text(
+              'Ooopsss. Your application has been declined. It’s not your fault, it’s a financial crisis.'),
         ),
       );
     } else {
       Get.dialog(
         const AlertDialog(
           title: Text('APPROVED'),
-          content: Text('Yeeeyyy !! Congrats. Your application has been approved. Don’t tell your friends you have money!'),
+          content: Text(
+              'Yeeeyyy !! Congrats. Your application has been approved. Don’t tell your friends you have money!'),
         ),
       );
 

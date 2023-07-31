@@ -25,7 +25,10 @@ class iznosController extends GetxController {
   void uplatiIznos(double iznosZaUplatiti, String recipientName) {
     iznos.value -= iznosZaUplatiti;
     _dodajTransakciju(Transakcije(
-        tip: tipTransakcije.UPLATA, iznos: iznosZaUplatiti, naziv: recipientName,  datum: DateTime.now()));
+        tip: tipTransakcije.UPLATA,
+        iznos: iznosZaUplatiti,
+        naziv: recipientName,
+        datum: DateTime.now()));
   }
 
   void loanIznos(double iznosZaPosuditi) {

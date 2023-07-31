@@ -1,5 +1,5 @@
 // ignore: camel_case_types
-enum tipTransakcije{
+enum tipTransakcije {
   // ignore: constant_identifier_names
   UPLATA,
   // ignore: constant_identifier_names
@@ -8,7 +8,7 @@ enum tipTransakcije{
   LOAN,
 }
 
-class Transakcije{
+class Transakcije {
   late final tipTransakcije tip;
   late final double iznos;
   late final DateTime datum;

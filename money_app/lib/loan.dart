@@ -9,9 +9,9 @@ class Loan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF7F7F7),
+      backgroundColor: const Color(0xFFF7F7F7),
       appBar: AppBar(
-        title: Text('Loan Application'),
+        title: const Text('Loan Application'),
         centerTitle: true,
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
@@ -20,7 +20,7 @@ class Loan extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: Text(
                 'Terms and Conditions',
@@ -28,7 +28,7 @@ class Loan extends StatelessWidget {
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: Text(
                 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
@@ -38,13 +38,14 @@ class Loan extends StatelessWidget {
             Container(
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Accept Terms & Conditions',
-                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
                     Obx(() {
                       return Switch(
@@ -62,7 +63,7 @@ class Loan extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
               child: Text(
                 'ABOUT YOU',
@@ -90,20 +91,25 @@ class Loan extends StatelessWidget {
               color: Colors.white,
               child: Row(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                  const Padding(
+                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: Text('\$')),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 0),
                       child: TextField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
                         onChanged: (value) {
-                          _loanController.monthlySalary.value = int.tryParse(value) ?? 0;
+                          _loanController.monthlySalary.value =
+                              int.tryParse(value) ?? 0;
                         },
                         decoration: const InputDecoration(
                           isDense: true,
@@ -140,21 +146,23 @@ class Loan extends StatelessWidget {
               color: Colors.white,
               child: Row(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                  const Padding(
+                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: Text('\$')),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 0),
                       child: TextField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
-                        onChanged: (value) {
-                          
-                        },
+                        onChanged: (value) {},
                         decoration: const InputDecoration(
                           isDense: true,
                           contentPadding:
@@ -169,7 +177,7 @@ class Loan extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
               child: Text(
                 'LOAN',
@@ -197,20 +205,25 @@ class Loan extends StatelessWidget {
               color: Colors.white,
               child: Row(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0), child: Text('\$')),
+                  const Padding(
+                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: Text('\$')),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 0),
                       child: TextField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
                         onChanged: (value) {
-                          _loanController.loanAmount.value = int.tryParse(value) ?? 0;
+                          _loanController.loanAmount.value =
+                              int.tryParse(value) ?? 0;
                         },
                         decoration: const InputDecoration(
                           isDense: true,
@@ -249,16 +262,20 @@ class Loan extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 0),
                       child: TextField(
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.black),
                         onChanged: (value) {
-                          _loanController.loanTerm.value = int.tryParse(value) ?? 0;
+                          _loanController.loanTerm.value =
+                              int.tryParse(value) ?? 0;
                         },
                         decoration: const InputDecoration(
                           isDense: true,
@@ -280,12 +297,15 @@ class Loan extends StatelessWidget {
                 child: Container(
                   height: 70,
                   width: 200,
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: ElevatedButton(
                     onPressed: _loanController.applyForLoan,
-                    child: Text('Apply for loan',style: TextStyle(fontSize: 20),),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFC0028B),
+                      backgroundColor: const Color(0xFFC0028B),
+                    ),
+                    child: const Text(
+                      'Apply for loan',
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 ),

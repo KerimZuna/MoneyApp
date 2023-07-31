@@ -58,7 +58,8 @@ class Pay extends StatelessWidget {
                 width: 220,
                 child: ElevatedButton(
                   onPressed: () {
-                    final double amount = double.tryParse(inputAmount.value) ?? 0.0;
+                    final double amount =
+                        double.tryParse(inputAmount.value) ?? 0.0;
                     Get.to(() => ToWho(), arguments: amount.toString());
                   },
                   style: ElevatedButton.styleFrom(

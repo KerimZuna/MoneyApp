@@ -13,7 +13,7 @@ class ToWho extends StatelessWidget {
         title: const Text('MoneyApp'),
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
-        centerTitle: true, 
+        centerTitle: true,
       ),
       backgroundColor: const Color(0xFFC0028B),
       body: Padding(
@@ -48,17 +48,12 @@ class ToWho extends StatelessWidget {
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: const Color(
-                      0xFFC0028B),
+                  fillColor: const Color(0xFFC0028B),
                   enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color:
-                            Colors.white),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors
-                            .white),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(0),
@@ -74,8 +69,9 @@ class ToWho extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     final double amount = double.tryParse(Get.arguments) ?? 0.0;
-                    Get.find<iznosController>().uplatiIznos(amount, recipientName.value);
-                    Get.off(() => Transactions());
+                    Get.find<iznosController>()
+                        .uplatiIznos(amount, recipientName.value);
+                    Get.off(() => const Transactions());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),
