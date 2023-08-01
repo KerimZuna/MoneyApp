@@ -76,4 +76,16 @@ class iznosController extends GetxController {
       return DateFormat('d MMMM').format(datum);
     }
   }
+  void splitTheBill(double newAmount) {
+    if (transakcije.isNotEmpty) {
+      double originalAmount = transakcije[0].iznos;
+      double splitFactor = newAmount / originalAmount;
+
+      for (var transaction in transakcije) {
+        transaction.iznos *= splitFactor;
+      }
+
+      iznos.value = newAmount;
+    }
+  }
 }

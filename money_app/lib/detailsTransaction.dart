@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:money_app/models/modelTransaction.dart';
 import 'package:get/get.dart';
-import 'controllers/balanceController.dart';
+import 'package:intl/intl.dart';
+import 'package:money_app/controllers/balanceController.dart';
+import 'package:money_app/models/modelTransaction.dart';
 
 class DetailsTransaction extends StatelessWidget {
   final Transakcije? transaction;
@@ -25,10 +25,6 @@ class DetailsTransaction extends StatelessWidget {
       );
     }
 
-    final balance = Get.find<iznosController>().iznos.value;
-    final dollars = (balance ~/ 1).toString();
-    final decimals = (balance % 1).toStringAsFixed(2).substring(1);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('MoneyApp'),
@@ -36,7 +32,11 @@ class DetailsTransaction extends StatelessWidget {
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
       ),
-      body: Container(
+      body: Obx((){
+        var balance = transaction!.iznos.obs;
+        RxString dollars = (balance ~/ 1).toString().obs;
+        RxString decimals = (balance % 1).toStringAsFixed(2).substring(1).obs;
+        return Container(
         color: const Color(0xFFF7F7F7),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,8 +47,7 @@ class DetailsTransaction extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color(0xFFC0028B), width: 0.2),
+                      border: Border.all(color: const Color(0xFFC0028B), width: 0.2),
                       borderRadius: BorderRadius.circular(4),
                       color: const Color(0xFFC0028B),
                     ),
@@ -64,14 +63,14 @@ class DetailsTransaction extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: dollars,
+                          text: '${dollars}',
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 40,
                               fontWeight: FontWeight.w300),
                         ),
                         TextSpan(
-                          text: decimals,
+                          text: '${decimals}',
                           style: const TextStyle(
                               color: Colors.black,
                               fontSize: 30,
@@ -113,16 +112,28 @@ class DetailsTransaction extends StatelessWidget {
                 backgroundColor: Colors.white,
                 elevation: 0,
               ),
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.receipt),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFC0028B),
+                        shape: BoxShape.rectangle,
+                      ),
+                      padding: const EdgeInsets.all(2),
+                      child: Icon(
+                        Icons.receipt,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
                     SizedBox(width: 8),
                     Text('Add receipt'),
                   ],
                 ),
+
               ),
             ),
             const SizedBox(height: 70),
@@ -137,18 +148,32 @@ class DetailsTransaction extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                double newAmount = iznosController().iznos.value.obs / 2.0;
+                iznosController().splitTheBill(newAmount);
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.black,
                 backgroundColor: Colors.white,
                 elevation: 0,
               ),
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.splitscreen),
+                    Container(
+                      decoration:BoxDecoration(
+                        color: const Color(0xFFC0028B),
+                        shape: BoxShape.rectangle,
+                      ),
+                      padding: EdgeInsets.all(2),
+                      child: Icon(
+                        Icons.splitscreen,
+                        color: Colors.white,
+                        size: 20,
+                        )
+                      ),
                     SizedBox(width: 8),
                     Text('Split this bill'),
                   ],
@@ -235,7 +260,9 @@ class DetailsTransaction extends StatelessWidget {
             )
           ],
         ),
-      ),
+      );
+
+      }),
     );
   }
 
