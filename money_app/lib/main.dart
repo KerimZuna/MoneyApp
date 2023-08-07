@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:money_app/transactions.dart';
-import 'controllers/balanceController.dart';
+import 'controllers/balance_controller.dart';
 
 void main() {
-  Get.put(iznosController());
+  Get.put(AmountController());
   runApp(const MyApp());
 }
 

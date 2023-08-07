@@ -5,6 +5,8 @@ import 'package:money_app/towho.dart';
 class Pay extends StatelessWidget {
   final RxString inputAmount = ''.obs;
 
+  Pay({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

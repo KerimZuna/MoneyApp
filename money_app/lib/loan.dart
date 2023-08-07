@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'controllers/loanController.dart';
+import 'controllers/loan_controller.dart';
 
 class Loan extends StatelessWidget {
   final LoanController _loanController = Get.put(LoanController());
+
+  Loan({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:money_app/transactions.dart';
-import 'controllers/balanceController.dart';
+import 'controllers/balance_controller.dart';
 
 class TopUp extends StatelessWidget {
   final RxString inputAmount = ''.obs;
+
+  TopUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,7 @@ class TopUp extends StatelessWidget {
                   onPressed: () {
                     final double amount =
                         double.tryParse(inputAmount.value) ?? 0.0;
-                    Get.find<iznosController>().dodajIznos(amount);
+                    Get.find<AmountController>().addAmount(amount);
                     Get.to(() => const Transactions());
                   },
                   style: ElevatedButton.styleFrom(

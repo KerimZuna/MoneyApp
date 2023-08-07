@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/controllers/balanceController.dart';
+import 'package:money_app/controllers/balance_controller.dart';
 import 'package:money_app/transactions.dart';
 
 class ToWho extends StatelessWidget {
   final RxString recipientName = ''.obs;
+
+  ToWho({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +71,8 @@ class ToWho extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     final double amount = double.tryParse(Get.arguments) ?? 0.0;
-                    Get.find<iznosController>()
-                        .uplatiIznos(amount, recipientName.value);
+                    Get.find<AmountController>()
+                        .paymentAmount(amount, recipientName.value);
                     Get.off(() => const Transactions());
                   },
                   style: ElevatedButton.styleFrom(

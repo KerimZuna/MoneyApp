@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:money_app/loan.dart';
-import 'package:money_app/models/modelTransaction.dart';
+import 'package:money_app/models/transaction.dart';
 import 'package:money_app/topup.dart';
 import 'package:money_app/pay.dart';
-import 'controllers/balanceController.dart';
-import 'detailsTransaction.dart';
+import 'controllers/balance_controller.dart';
+import 'details_transaction.dart';
 
 class Transactions extends StatelessWidget {
   const Transactions({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class Transactions extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 80),
                   child: Obx(
                     () {
-                      final balance = Get.find<iznosController>().iznos.value;
+                      final balance = Get.find<AmountController>().amount.value;
                       final dollars = (balance ~/ 1).toString();
                       final decimals =
                           (balance % 1).toStringAsFixed(2).substring(1);
@@ -79,7 +79,7 @@ class Transactions extends StatelessWidget {
                     child: Obx(
                       () {
                         final transactionList =
-                            Get.find<iznosController>().transakcije;
+                            Get.find<AmountController>().transaction;
                         final groupedTransactions =
                             _groupTransactionsByDate(transactionList);
 
@@ -116,24 +116,24 @@ class Transactions extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     final transaction = transactions?[index];
                                     String amountText =
-                                        '${transaction?.iznos.toStringAsFixed(2)}';
+                                        '${transaction?.amount.toStringAsFixed(2)}';
                                     IconData iconData;
                                     String transactionText;
 
-                                    if (transaction?.tip ==
-                                        tipTransakcije.DEPOSIT) {
+                                    if (transaction?.type ==
+                                        TypeOfTransaction.deposit) {
                                       iconData = Icons.add_circle_rounded;
                                       transactionText = 'Top Up';
                                       amountText = '+$amountText';
-                                    } else if (transaction?.tip ==
-                                        tipTransakcije.LOAN) {
+                                    } else if (transaction?.type ==
+                                        TypeOfTransaction.loan) {
                                       iconData =
                                           Icons.assured_workload_outlined;
                                       transactionText = 'Loan';
                                       amountText = '+$amountText';
                                     } else {
                                       iconData = Icons.shopping_bag;
-                                      transactionText = transaction!.naziv;
+                                      transactionText = transaction!.name;
                                     }
 
                                     return ElevatedButton(
@@ -176,8 +176,8 @@ class Transactions extends StatelessWidget {
                                                 text: amountText.substring(
                                                     0, amountText.indexOf('.')),
                                                 style: TextStyle(
-                                                  color: transaction?.tip ==
-                                                          tipTransakcije.DEPOSIT
+                                                  color: transaction?.type ==
+                                                          TypeOfTransaction.deposit
                                                       ? Colors.pink
                                                       : Colors.black,
                                                   fontSize: 25,
@@ -188,8 +188,8 @@ class Transactions extends StatelessWidget {
                                                 text: amountText.substring(
                                                     amountText.indexOf('.')),
                                                 style: TextStyle(
-                                                  color: transaction?.tip ==
-                                                          tipTransakcije.DEPOSIT
+                                                  color: transaction?.type ==
+                                                          TypeOfTransaction.deposit
                                                       ? Colors.pink
                                                       : Colors.black,
                                                   fontSize: 20,
@@ -270,13 +270,13 @@ class Transactions extends StatelessWidget {
     );
   }
 
-  Map<DateTime, List<Transakcije>> _groupTransactionsByDate(
-      List<Transakcije> transactions) {
-    final Map<DateTime, List<Transakcije>> groupedTransactions = {};
+  Map<DateTime, List<Transaction>> _groupTransactionsByDate(
+      List<Transaction> transactions) {
+    final Map<DateTime, List<Transaction>> groupedTransactions = {};
 
     for (var transaction in transactions) {
-      final date = DateTime(transaction.datum.year, transaction.datum.month,
-          transaction.datum.day);
+      final date = DateTime(transaction.date.year, transaction.date.month,
+          transaction.date.day);
 
       if (!groupedTransactions.containsKey(date)) {
         groupedTransactions[date] = [];
@@ -289,6 +289,6 @@ class Transactions extends StatelessWidget {
   }
 
   String formatDate(DateTime datum) {
-    return iznosController().formatDate(datum);
+    return AmountController().formatDate(datum);
   }
 }

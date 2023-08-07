@@ -1,15 +1,15 @@
-import 'balanceController.dart';
+import 'balance_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class LoanController extends GetxController {
-  final iznosController _iznosController = Get.find<iznosController>();
-  RxBool acceptedTerms = false.obs;
-  RxBool appliedBefore = false.obs;
-  RxInt monthlySalary = RxInt(0);
-  RxInt loanAmount = RxInt(0);
-  RxInt loanTerm = RxInt(0);
+  final AmountController _amountController = Get.find<AmountController>();
+  final RxBool acceptedTerms = false.obs;
+  final RxBool appliedBefore = false.obs;
+  final RxInt monthlySalary = RxInt(0);
+  final RxInt loanAmount = RxInt(0);
+  final RxInt loanTerm = RxInt(0);
 
   @override
   void onInit() {
@@ -28,7 +28,6 @@ class LoanController extends GetxController {
       final data = response.body.replaceAll('[', '').replaceAll(']', '');
       final randomNumber = int.tryParse(data);
       if (randomNumber != null) {
-        print(randomNumber);
         return randomNumber;
       }
     }
@@ -60,7 +59,7 @@ class LoanController extends GetxController {
     }
 
     final randomNumber = await generateRandomNumber();
-    final accountMoney = _iznosController.iznos.value;
+    final accountMoney = _amountController.amount.value;
 
     if (randomNumber <= 50 ||
         accountMoney <= 1000 ||
@@ -82,7 +81,7 @@ class LoanController extends GetxController {
         ),
       );
 
-      _iznosController.loanIznos(loanAmount.value.toDouble());
+      _amountController.loanAmount(loanAmount.value.toDouble());
     }
 
     appliedBefore.value = true;
