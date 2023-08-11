@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   void addAmount(double amountToAdd) {
     amount.value += amountToAdd;
     _addTransaction(Transaction(
-      type: TypeOfTransaction.deposit,
+      type: TransactionType.deposit,
       amount: amountToAdd,
       date: DateTime.now(),
     ));
@@ -25,7 +25,7 @@ class HomeController extends GetxController {
   void paymentAmount(double amountForPayment, String recipientName) {
     amount.value -= amountForPayment;
     _addTransaction(Transaction(
-        type: TypeOfTransaction.payment,
+        type: TransactionType.payment,
         amount: amountForPayment,
         name: recipientName,
         date: DateTime.now()));
@@ -34,7 +34,7 @@ class HomeController extends GetxController {
   void loanAmount(double amountForLoan) {
     amount.value += amountForLoan;
     _addTransaction(Transaction(
-      type: TypeOfTransaction.loan,
+      type: TransactionType.loan,
       amount: amountForLoan,
       date: DateTime.now(),
     ));
@@ -47,19 +47,19 @@ class HomeController extends GetxController {
   List<Transaction> _getDummyTransactions() {
     return [
       Transaction(
-        type: TypeOfTransaction.payment,
+        type: TransactionType.payment,
         amount: 18.99,
         date: DateTime.now().subtract(const Duration(days: 1)),
         name: 'Konzum',
       ),
       Transaction(
-        type: TypeOfTransaction.payment,
+        type: TransactionType.payment,
         amount: 175.00,
         date: DateTime.now().subtract(const Duration(days: 1)),
         name: 'Sport Vision',
       ),
       Transaction(
-        type: TypeOfTransaction.payment,
+        type: TransactionType.payment,
         amount: 21.75,
         date: DateTime.now().subtract(const Duration(days: 1)),
         name: 'Udemy',

@@ -56,7 +56,7 @@ class PayView extends GetView<PayController> {
                 inputAmount.value = inputAmount.value + value;
               }
             }),
-            const SizedBox(height: 120),
+            const SizedBox(height: 80),
             Center(
               child: SizedBox(
                 height: 70,

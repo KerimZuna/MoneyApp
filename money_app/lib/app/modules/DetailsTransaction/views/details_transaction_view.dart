@@ -36,10 +36,10 @@ class DetailsTransactionView extends GetView<DetailsTransactionController> {
         elevation: 0.0,
       ),
       body: Obx(() {
-        var balance = transaction!.amount.obs;
-        final RxString dollars = (balance ~/ 1).toString().obs;
-        final RxString decimals =
-            (balance % 1).toStringAsFixed(2).substring(1).obs;
+        var balance = transaction!.amount;
+        final String dollars = (balance ~/ 1).toString();
+        final String decimals =
+            (balance % 1).toStringAsFixed(2).substring(1);
         return Container(
           color: const Color(0xFFF7F7F7),
           child: Column(
@@ -68,14 +68,14 @@ class DetailsTransactionView extends GetView<DetailsTransactionController> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: '$dollars',
+                            text: dollars,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 40,
                                 fontWeight: FontWeight.w300),
                           ),
                           TextSpan(
-                            text: '$decimals',
+                            text: decimals,
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 30,

@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 import '../../Home/views/home.dart';
 
 class DetailsTransactionController extends GetxController {
-  IconData getTransactionIcon(TypeOfTransaction type) {
-    if (type == TypeOfTransaction.deposit) {
+  IconData getTransactionIcon(TransactionType type) {
+    if (type == TransactionType.deposit) {
       return Icons.add_circle_rounded;
-    } else if (type == TypeOfTransaction.loan) {
+    } else if (type == TransactionType.loan) {
       return Icons.assured_workload_outlined;
     } else {
       return Icons.shopping_bag;

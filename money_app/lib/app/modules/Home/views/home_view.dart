@@ -120,12 +120,12 @@ class HomeView extends GetView<HomeController> {
                                     String transactionText;
 
                                     if (transaction?.type ==
-                                        TypeOfTransaction.deposit) {
+                                        TransactionType.deposit) {
                                       iconData = Icons.add_circle_rounded;
                                       transactionText = 'Top Up';
                                       amountText = '+$amountText';
                                     } else if (transaction?.type ==
-                                        TypeOfTransaction.loan) {
+                                        TransactionType.loan) {
                                       iconData =
                                           Icons.assured_workload_outlined;
                                       transactionText = 'Loan';
@@ -176,7 +176,7 @@ class HomeView extends GetView<HomeController> {
                                                     0, amountText.indexOf('.')),
                                                 style: TextStyle(
                                                   color: transaction?.type ==
-                                                          TypeOfTransaction.deposit
+                                                          TransactionType.deposit
                                                       ? Colors.pink
                                                       : Colors.black,
                                                   fontSize: 25,
@@ -188,7 +188,7 @@ class HomeView extends GetView<HomeController> {
                                                     amountText.indexOf('.')),
                                                 style: TextStyle(
                                                   color: transaction?.type ==
-                                                          TypeOfTransaction.deposit
+                                                          TransactionType.deposit
                                                       ? Colors.pink
                                                       : Colors.black,
                                                   fontSize: 20,

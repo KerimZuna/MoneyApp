@@ -1,11 +1,11 @@
-enum  TypeOfTransaction{
+enum  TransactionType{
   payment,
   deposit,
   loan,
 }
 
 class Transaction {
-  late final TypeOfTransaction type;
+  late final TransactionType type;
   late final double amount;
   late final DateTime date;
   late final String name;
