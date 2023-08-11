@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/towho.dart';
+import 'package:money_app/app/modules/ToWho/views/to_who_view.dart';
+import '../controllers/pay_controller.dart';
 
-class Pay extends StatelessWidget {
+class PayView extends GetView<PayController> {
   final RxString inputAmount = ''.obs;
 
-  Pay({super.key});
+  PayView({super.key});
+
+  
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFC0028B),
       appBar: AppBar(
-        title: const Text('MoneyApp'),
+        title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: const Color(0xFFC0028B),
@@ -62,7 +65,7 @@ class Pay extends StatelessWidget {
                   onPressed: () {
                     final double amount =
                         double.tryParse(inputAmount.value) ?? 0.0;
-                    Get.to(() => ToWho(), arguments: amount.toString());
+                    Get.to(() => ToWhoView(), arguments: amount.toString());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),

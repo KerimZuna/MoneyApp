@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:money_app/models/transaction.dart';
 
-class DetailsTransaction extends StatelessWidget {
+import 'package:get/get.dart';
+import 'package:money_app/app/modules/Home/views/home.dart';
+
+import '../controllers/details_transaction_controller.dart';
+
+class DetailsTransactionView extends GetView<DetailsTransactionController> {
   final Transaction? transaction;
 
-  const DetailsTransaction({required this.transaction, Key? key})
+  DetailsTransactionView({required this.transaction, Key? key})
       : super(key: key);
 
+  final DetailsTransactionController _detailsController =
+      Get.put(DetailsTransactionController());
   @override
   Widget build(BuildContext context) {
     if (transaction == null) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('MoneyApp'),
+          title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
           centerTitle: true,
           backgroundColor: const Color(0xFFC0028B),
         ),
@@ -26,7 +30,7 @@ class DetailsTransaction extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MoneyApp'),
+        title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
@@ -34,7 +38,8 @@ class DetailsTransaction extends StatelessWidget {
       body: Obx(() {
         var balance = transaction!.amount.obs;
         final RxString dollars = (balance ~/ 1).toString().obs;
-        final RxString decimals = (balance % 1).toStringAsFixed(2).substring(1).obs;
+        final RxString decimals =
+            (balance % 1).toStringAsFixed(2).substring(1).obs;
         return Container(
           color: const Color(0xFFF7F7F7),
           child: Column(
@@ -48,12 +53,12 @@ class DetailsTransaction extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: const Color(0xFFC0028B), width: 0.2),
-                        borderRadius: BorderRadius.circular(4),
                         color: const Color(0xFFC0028B),
                       ),
                       padding: const EdgeInsets.all(10),
                       child: Icon(
-                        getTransactionIcon(transaction!.type),
+                        _detailsController
+                            .getTransactionIcon(transaction!.type),
                         color: Colors.white,
                         size: 60,
                       ),
@@ -97,7 +102,7 @@ class DetailsTransaction extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
                 child: Text(
-                  formatDateTime(transaction!.date),
+                  _detailsController.formatDateTime(transaction!.date),
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -232,7 +237,7 @@ class DetailsTransaction extends StatelessWidget {
               const SizedBox(height: 50),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children:[
+                children: [
                   Text(
                     'Transaction ID #12343595939530',
                     style: TextStyle(
@@ -259,19 +264,5 @@ class DetailsTransaction extends StatelessWidget {
         );
       }),
     );
-  }
-
-  IconData getTransactionIcon(TypeOfTransaction type) {
-    if (type == TypeOfTransaction.deposit) {
-      return Icons.add_circle_rounded;
-    } else if (type == TypeOfTransaction.loan) {
-      return Icons.assured_workload_outlined;
-    } else {
-      return Icons.shopping_bag;
-    }
-  }
-
-  String formatDateTime(DateTime dateTime) {
-    return DateFormat('d MMMM yyyy, HH:mm').format(dateTime);
   }
 }

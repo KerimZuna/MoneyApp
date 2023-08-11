@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/loan.dart';
-import 'package:money_app/models/transaction.dart';
-import 'package:money_app/topup.dart';
-import 'package:money_app/pay.dart';
-import 'controllers/balance_controller.dart';
-import 'details_transaction.dart';
+import 'package:money_app/app/modules/DetailsTransaction/views/details_transaction_view.dart';
+import 'package:money_app/app/modules/Home/views/home.dart';
+import 'package:money_app/app/modules/Loan/views/loan_view.dart';
+import 'package:money_app/app/modules/Pay/views/pay_view.dart';
+import 'package:money_app/app/modules/TopUp/views/top_up_view.dart';
+import '../controllers/home_controller.dart';
 
-class Transactions extends StatelessWidget {
-  const Transactions({Key? key}) : super(key: key);
-
-  @override
+class HomeView extends GetView<HomeController> {
+  const HomeView({Key? key}) : super(key: key);
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MoneyApp'),
+        title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: const Color(0xFFC0028B),
@@ -30,7 +29,7 @@ class Transactions extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 80),
                   child: Obx(
                     () {
-                      final balance = Get.find<AmountController>().amount.value;
+                      final balance = Get.find<HomeController>().amount.value;
                       final dollars = (balance ~/ 1).toString();
                       final decimals =
                           (balance % 1).toStringAsFixed(2).substring(1);
@@ -79,7 +78,7 @@ class Transactions extends StatelessWidget {
                     child: Obx(
                       () {
                         final transactionList =
-                            Get.find<AmountController>().transaction;
+                            Get.find<HomeController>().transaction;
                         final groupedTransactions =
                             _groupTransactionsByDate(transactionList);
 
@@ -138,7 +137,7 @@ class Transactions extends StatelessWidget {
 
                                     return ElevatedButton(
                                       onPressed: () {
-                                        Get.to(() => DetailsTransaction(
+                                        Get.to(() => DetailsTransactionView(
                                             transaction: transaction));
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -216,7 +215,7 @@ class Transactions extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -233,15 +232,15 @@ class Transactions extends StatelessWidget {
                       children: [
                         buildIconButton("lib/assets/images/icon1.png", "Pay",
                             () {
-                          Get.to(() => Pay());
+                          Get.to(() => PayView());
                         }),
                         buildIconButton("lib/assets/images/icon2.png", "Top up",
                             () {
-                          Get.to(() => TopUp());
+                          Get.to(() => TopUpView());
                         }),
                         buildIconButton("lib/assets/images/icon3.png", "Loan",
                             () {
-                          Get.to(() => Loan());
+                          Get.to(() => LoanView());
                         }),
                       ],
                     ),
@@ -289,6 +288,6 @@ class Transactions extends StatelessWidget {
   }
 
   String formatDate(DateTime datum) {
-    return AmountController().formatDate(datum);
+    return HomeController().formatDate(datum);
   }
 }

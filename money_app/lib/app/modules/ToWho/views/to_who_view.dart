@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:money_app/controllers/balance_controller.dart';
-import 'package:money_app/transactions.dart';
 
-class ToWho extends StatelessWidget {
+import 'package:get/get.dart';
+import 'package:money_app/app/modules/Home/controllers/home_controller.dart';
+import 'package:money_app/app/modules/Home/views/home_view.dart';
+
+import '../controllers/to_who_controller.dart';
+
+class ToWhoView extends GetView<ToWhoController> {
   final RxString recipientName = ''.obs;
 
-  ToWho({super.key});
+  ToWhoView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MoneyApp'),
+        title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
         centerTitle: true,
@@ -71,9 +74,9 @@ class ToWho extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     final double amount = double.tryParse(Get.arguments) ?? 0.0;
-                    Get.find<AmountController>()
+                    Get.find<HomeController>()
                         .paymentAmount(amount, recipientName.value);
-                    Get.off(() => const Transactions());
+                    Get.off(() => const HomeView());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),

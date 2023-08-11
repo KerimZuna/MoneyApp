@@ -1,10 +1,10 @@
-import 'balance_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:money_app/app/modules/Home/controllers/home_controller.dart';
 import 'package:http/http.dart' as http;
 
 class LoanController extends GetxController {
-  final AmountController _amountController = Get.find<AmountController>();
+  final HomeController _homeController = Get.find<HomeController>();
   final RxBool acceptedTerms = false.obs;
   final RxBool appliedBefore = false.obs;
   final RxInt monthlySalary = RxInt(0);
@@ -33,7 +33,7 @@ class LoanController extends GetxController {
     }
     return 0;
   }
-
+  
   void applyForLoan() async {
     if (appliedBefore.value) {
       Get.dialog(
@@ -59,7 +59,7 @@ class LoanController extends GetxController {
     }
 
     final randomNumber = await generateRandomNumber();
-    final accountMoney = _amountController.amount.value;
+    final accountMoney = _homeController.amount.value;
 
     if (randomNumber <= 50 ||
         accountMoney <= 1000 ||
@@ -81,7 +81,7 @@ class LoanController extends GetxController {
         ),
       );
 
-      _amountController.loanAmount(loanAmount.value.toDouble());
+      _homeController.loanAmount(loanAmount.value.toDouble());
     }
 
     appliedBefore.value = true;

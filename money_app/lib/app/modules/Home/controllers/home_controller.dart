@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:money_app/models/transaction.dart';
+import 'package:money_app/app/modules/Home/views/home.dart';
 
-class AmountController extends GetxController {
+class HomeController extends GetxController {
   var amount = 0.0.obs;
   var transaction = <Transaction>[].obs;
 

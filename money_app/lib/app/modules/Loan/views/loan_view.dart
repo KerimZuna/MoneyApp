@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
-import 'controllers/loan_controller.dart';
 
-class Loan extends StatelessWidget {
+import '../controllers/loan_controller.dart';
+
+class LoanView extends GetView<LoanController> {
+  LoanView({Key? key}) : super(key: key);
   final LoanController _loanController = Get.put(LoanController());
-
-  Loan({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F7F7),
       appBar: AppBar(
-        title: const Text('Loan Application'),
+        title: const Text('Loan Application', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
@@ -33,7 +34,7 @@ class Loan extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: Text(
-                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
+                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.',
                 textAlign: TextAlign.justify,
               ),
             ),
@@ -307,7 +308,7 @@ class Loan extends StatelessWidget {
                     ),
                     child: const Text(
                       'Apply for loan',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Colors.white), 
                     ),
                   ),
                 ),

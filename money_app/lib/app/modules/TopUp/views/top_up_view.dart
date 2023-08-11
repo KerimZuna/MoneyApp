@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:money_app/transactions.dart';
-import 'controllers/balance_controller.dart';
 
-class TopUp extends StatelessWidget {
+import 'package:get/get.dart';
+import 'package:money_app/app/modules/Home/controllers/home_controller.dart';
+import 'package:money_app/app/modules/Home/views/home_view.dart';
+import 'package:money_app/app/modules/TopUp/controllers/top_up_controller.dart';
+
+class TopUpView extends GetView<TopUpController> {
   final RxString inputAmount = ''.obs;
 
-  TopUp({super.key});
+  TopUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFC0028B),
       appBar: AppBar(
-        title: const Text('MoneyApp'),
+        title: const Text('MoneyApp', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: const Color(0xFFC0028B),
@@ -63,8 +65,8 @@ class TopUp extends StatelessWidget {
                   onPressed: () {
                     final double amount =
                         double.tryParse(inputAmount.value) ?? 0.0;
-                    Get.find<AmountController>().addAmount(amount);
-                    Get.to(() => const Transactions());
+                    Get.find<HomeController>().addAmount(amount);
+                    Get.to(() => const HomeView());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9E6F3).withOpacity(0.9),
