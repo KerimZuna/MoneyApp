@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.only(bottom: 80),
                   child: Obx(
                     () {
-                      final balance = Get.find<HomeController>().amount.value;
+                      final balance = controller.amount.value;
                       final dollars = (balance ~/ 1).toString();
                       final decimals =
                           (balance % 1).toStringAsFixed(2).substring(1);
@@ -77,8 +77,7 @@ class HomeView extends GetView<HomeController> {
                     padding: const EdgeInsets.fromLTRB(0, 90, 0, 0),
                     child: Obx(
                       () {
-                        final transactionList =
-                            Get.find<HomeController>().transaction;
+                        final transactionList = controller.transaction;
                         final groupedTransactions =
                             _groupTransactionsByDate(transactionList);
 

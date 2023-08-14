@@ -13,8 +13,12 @@ class DetailsTransactionView extends GetView<DetailsTransactionController> {
 
   final DetailsTransactionController _detailsController =
       Get.put(DetailsTransactionController());
+
   @override
   Widget build(BuildContext context) {
+    var balance = transaction!.amount;
+    final String dollars = (balance ~/ 1).toString();
+    final String decimals = (balance % 1).toStringAsFixed(2).substring(1);
     if (transaction == null) {
       return Scaffold(
         appBar: AppBar(
@@ -35,12 +39,8 @@ class DetailsTransactionView extends GetView<DetailsTransactionController> {
         backgroundColor: const Color(0xFFC0028B),
         elevation: 0.0,
       ),
-      body: Obx(() {
-        var balance = transaction!.amount;
-        final String dollars = (balance ~/ 1).toString();
-        final String decimals =
-            (balance % 1).toStringAsFixed(2).substring(1);
-        return Container(
+      body:
+        Container(
           color: const Color(0xFFF7F7F7),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -261,8 +261,7 @@ class DetailsTransactionView extends GetView<DetailsTransactionController> {
               )
             ],
           ),
-        );
-      }),
+        ),
     );
   }
 }
