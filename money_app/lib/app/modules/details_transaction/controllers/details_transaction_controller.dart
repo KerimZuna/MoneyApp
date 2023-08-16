@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../Home/views/home.dart';
+import '../../home/views/home.dart';
 
 class DetailsTransactionController extends GetxController {
   IconData getTransactionIcon(TransactionType type) {

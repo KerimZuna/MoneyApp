@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/ToWho/bindings/to_who_binding.dart';
-import 'package:money_app/app/modules/ToWho/views/to_who_view.dart';
-import '../modules/DetailsTransaction/bindings/details_transaction_binding.dart';
-import '../modules/DetailsTransaction/views/details_transaction_view.dart';
-import '../modules/Loan/bindings/loan_binding.dart';
-import '../modules/Loan/views/loan_view.dart';
-import '../modules/Pay/bindings/pay_binding.dart';
-import '../modules/Pay/views/pay_view.dart';
-import '../modules/TopUp/bindings/top_up_binding.dart';
-import '../modules/TopUp/views/top_up_view.dart';
-import '../modules/Home/bindings/home_binding.dart';
-import '../modules/Home/views/home_view.dart';
+import 'package:money_app/app/modules/to_who/bindings/to_who_binding.dart';
+import 'package:money_app/app/modules/to_who/views/to_who_view.dart';
+import '../modules/details_transaction/bindings/details_transaction_binding.dart';
+import '../modules/details_transaction/views/details_transaction_view.dart';
+import '../modules/loan/bindings/loan_binding.dart';
+import '../modules/loan/views/loan_view.dart';
+import '../modules/pay/bindings/pay_binding.dart';
+import '../modules/pay/views/pay_view.dart';
+import '../modules/top_up/bindings/top_up_binding.dart';
+import '../modules/top_up/views/top_up_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
 

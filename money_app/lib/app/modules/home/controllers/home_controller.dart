@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:money_app/app/modules/Home/views/home.dart';
+import 'package:money_app/app/modules/home/views/home.dart';
 
 class HomeController extends GetxController {
   var amount = 0.0.obs;

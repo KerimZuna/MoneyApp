@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/Home/controllers/home_controller.dart';
+import 'package:money_app/app/modules/home/controllers/home_controller.dart';
 import 'package:http/http.dart' as http;
 
 class LoanController extends GetxController {

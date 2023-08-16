@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/Home/controllers/home_controller.dart';
-import 'package:money_app/app/modules/Home/views/home_view.dart';
+import 'package:money_app/app/modules/home/controllers/home_controller.dart';
+import 'package:money_app/app/modules/home/views/home_view.dart';
 
 import '../controllers/to_who_controller.dart';
 

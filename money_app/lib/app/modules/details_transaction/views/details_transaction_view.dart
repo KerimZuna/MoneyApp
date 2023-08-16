@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/Home/views/home.dart';
+import 'package:money_app/app/modules/home/views/home.dart';
 
 import '../controllers/details_transaction_controller.dart';
 

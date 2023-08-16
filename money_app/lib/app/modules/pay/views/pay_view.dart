@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/ToWho/views/to_who_view.dart';
+import 'package:money_app/app/modules/to_who/views/to_who_view.dart';
 import '../controllers/pay_controller.dart';
 
 class PayView extends GetView<PayController> {

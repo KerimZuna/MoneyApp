@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_app/app/modules/DetailsTransaction/views/details_transaction_view.dart';
-import 'package:money_app/app/modules/Home/views/home.dart';
-import 'package:money_app/app/modules/Loan/views/loan_view.dart';
-import 'package:money_app/app/modules/Pay/views/pay_view.dart';
-import 'package:money_app/app/modules/TopUp/views/top_up_view.dart';
+import 'package:money_app/app/modules/details_transaction/views/details_transaction_view.dart';
+import 'package:money_app/app/modules/home/views/home.dart';
+import 'package:money_app/app/modules/loan/views/loan_view.dart';
+import 'package:money_app/app/modules/pay/views/pay_view.dart';
+import 'package:money_app/app/modules/top_up/views/top_up_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
